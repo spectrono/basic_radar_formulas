@@ -1,0 +1,35 @@
+# R session and project files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Package development and dependency environments
+renv/library/
+renv/staging/
+*.Rcheck/
+src-i386/
+src-x64/
+
+# Generated documentation, reports, and rendered notebooks
+docs/
+*.html
+*.pdf
+*.nb.html
+*_cache/
+cache/
+
+# Generated plots and application output
+output/
+results/
+figures/generated/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
