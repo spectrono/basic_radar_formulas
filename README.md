@@ -57,9 +57,9 @@ FMCW radar transmits a frequency-modulated chirp signal. When the signal reflect
 **Example Output:**
 For beat frequencies [0 MHz, 1.1 MHz, 13 MHz, 24 MHz] with R_max = 300 m and R_res = 1 m:
 - Target 1: f_b = 0.0 MHz → Range = 0.000 m
-- Target 2: f_b = 1.1 MHz → Range = 4.033 m
-- Target 3: f_b = 13.0 MHz → Range = 47.667 m
-- Target 4: f_b = 24.0 MHz → Range = 88.001 m
+- Target 2: f_b = 1.1 MHz → Range = 12.100 m
+- Target 3: f_b = 13.0 MHz → Range = 143.000 m
+- Target 4: f_b = 24.0 MHz → Range = 264.000 m
 
 ---
 
