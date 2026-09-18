@@ -4,10 +4,23 @@
 #' @description Self-contained demonstration of estimating target range from beat 
 #'   frequencies in a Frequency Modulated Continuous Wave (FMCW) radar system.
 #'
+#' @section Motivation:
+#' Accurate range estimation is fundamental for automotive safety systems. In modern
+#' vehicles, FMCW radar enables critical functions such as:
+#' - Adaptive Cruise Control (ACC): Maintaining safe following distances to vehicles ahead
+#' - Autonomous Emergency Braking (AEB): Detecting imminent collisions and triggering brakes
+#' - Forward Collision Warning (FCW): Alerting drivers to potential front-end collisions
+#' - Parking Assist: Helping drivers navigate tight parking spaces
+#' 
+#' FMCW radar's ability to simultaneously measure range and velocity with high accuracy
+#' using compact, cost-effective hardware makes it ideal for automotive applications where
+#' size, power consumption, and reliability are critical constraints.
+#'
 #' @section Theory:
 #' FMCW radar transmits a frequency-modulated chirp signal. The received signal 
 #' (reflected from targets) is mixed with the transmitted signal, producing a 
-#' beat frequency that is directly proportional to the target's range.
+#' beat frequency that is directly proportional to the target's range. This principle
+#' enables precise distance measurements essential for automotive safety systems.
 #'
 #' @section Key Formulas:
 #' 1. Range Resolution: B_sweep = c / (2 * R_res)
@@ -26,10 +39,19 @@
 #'
 #' @section Parameters in this demonstration:
 #' - Beat frequencies of four targets: [0 MHz, 1.1 MHz, 13 MHz, 24 MHz]
-#' - Maximum radar range (R_max): 300 m
-#' - Range resolution (R_res): 1 m
+#' - Maximum radar range (R_max): 300 m (covers typical highway ACC scenarios)
+#' - Range resolution (R_res): 1 m (sufficient for vehicle detection and tracking)
 #' - Speed of light (c): 3e8 m/s
-#' - Chirp time factor: 5.5
+#' - Chirp time factor: 5.5 (ensures reliable detection at maximum range)
+
+# =============================================================================
+# SET WORKING DIRECTORY TO PROJECT ROOT
+# =============================================================================
+# Ensure consistent behavior regardless of where the script is sourced from
+current_dir <- getwd()
+if (grepl("/src/R$", current_dir) || grepl("\\src\\R$", current_dir)) {
+  setwd(dirname(dirname(current_dir)))
+}
 
 # =============================================================================
 # 1. PARAMETER DEFINITION
@@ -127,7 +149,22 @@ cat(sprintf("  - Sweep Bandwidth: %.1f MHz\n", B_sweep / 1e6))
 cat(sprintf("  - Chirp Time: %.3f us\n", T_chirp * 1e6))
 cat(sprintf("  - Maximum detectable range: %d m\n", R_max))
 cat(sprintf("  - Maximum beat frequency: %.1f MHz\n", f_b_max / 1e6))
-cat("\nThe calculated ranges for the given beat frequencies are shown above.\n")
+cat("\nThe calculated ranges for the given beat frequencies are shown above.\n\n")
+
+# =============================================================================
+# PRACTICAL CONTEXT IN AUTOMOTIVE SYSTEMS
+# =============================================================================
+cat("Practical Context in Automotive Systems:\n")
+cat("In automotive FMCW radar applications:\n")
+cat("  - Adaptive Cruise Control (ACC): Maintains safe following distance by continuously\n")
+cat("    estimating range to the vehicle ahead and adjusting speed accordingly\n")
+cat("  - Autonomous Emergency Braking (AEB): Detects rapid closure rates and triggers\n")
+cat("    emergency braking when collision is imminent\n")
+cat("  - Forward Collision Warning (FCW): Alerts driver when closing velocity suggests\n")
+cat("    potential collision based on range and relative velocity\n")
+cat("  - The 300 m maximum range covers typical highway scenarios\n")
+cat("  - 1 m range resolution allows distinction between close vehicles in traffic\n")
+cat("  - Typical automotive FMCW radars operate at 76-81 GHz with similar parameters\n\n")
 
 # =============================================================================
 # REUSABLE FUNCTION

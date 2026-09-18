@@ -67,6 +67,16 @@
 #' - Speed of light (c): 3e8 m/s
 
 # =============================================================================
+# SET WORKING DIRECTORY TO PROJECT ROOT
+# =============================================================================
+# Ensure plots are saved to the project root's plots/ directory regardless of
+# where the script is sourced from
+current_dir <- getwd()
+if (grepl("/src/R$", current_dir) || grepl("\\src\\R$", current_dir)) {
+  setwd(dirname(dirname(current_dir)))
+}
+
+# =============================================================================
 # 1. PARAMETER DEFINITION
 # =============================================================================
 
@@ -193,9 +203,10 @@ if (can_display && interactive()) {
   # For interactive environments (RStudio, R GUI on macOS, etc.)
   
   # Create a new window or device
-  if (!interactive()) {
-    pdf("doppler_velocity_plot.pdf", width = 10, height = 6)
+    if (!dir.exists("plots")) {
+    dir.create("plots")
   }
+  png(file.path("plots", "doppler_frequency_velocities.png"), width = 1000, height = 600)
   
   # Layout with two plots side by side
   layout(matrix(c(1, 2), nrow = 1, ncol = 2), widths = c(1, 1))
@@ -316,9 +327,12 @@ if (can_display && interactive()) {
   cat(sprintf("     vr = %.6f * fd [where fd is in Hz]\n", c / (2 * f0_Hz)))
   cat(sprintf("     vr = %.6f * fd [where fd is in kHz]\n\n", c / (2 * f0_Hz) * 1000))
   
-  # Also save the plot to PDF for non-interactive mode
-  cat("   Saving visualization to 'doppler_velocity_plot.pdf'\n")
-  pdf("doppler_velocity_plot.pdf", width = 12, height = 6)
+  # Also save the plot to PNG for non-interactive mode
+  cat("   Saving visualization to 'plots/' directory...\n")
+  if (!dir.exists("plots")) {
+    dir.create("plots")
+  }
+  png(file.path("plots", "doppler_velocity_plot.png"), width = 1200, height = 600)
   
   par(mfrow = c(1, 2))
   

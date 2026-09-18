@@ -23,6 +23,7 @@ cache/
 output/
 results/
 figures/generated/
+plots/
 
 # Operating-system files
 .DS_Store
