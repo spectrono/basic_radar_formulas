@@ -203,6 +203,8 @@ All demonstration scripts generate and save plots to the `plots/` directory:
    - Color coding: Green bars for approaching targets (positive fd), red bars for receding targets (negative fd)
    - Zero line (blue dashed) indicates the boundary between approaching and receding targets
 
+![][doppler_velocity]
+
 **Usage with VS Code:**
 
 1. Open this repository in Visual Studio Code
